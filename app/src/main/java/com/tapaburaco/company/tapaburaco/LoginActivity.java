@@ -3,6 +3,7 @@ package com.tapaburaco.company.tapaburaco;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -13,15 +14,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    private FirebaseAuth mAuth;
 
     TextView _signupLink;
     EditText _emailText;
     EditText _passwordText;
     Button _loginButton;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
          _emailText  = findViewById(R.id.input_email);
          _passwordText  = findViewById(R.id.input_password);
          _loginButton = findViewById(R.id.btn_login);
+
+         mAuth = FirebaseAuth.getInstance();
 
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
@@ -48,8 +58,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the Signup activity
-               // Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                //startActivityForResult(intent, REQUEST_SIGNUP);
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
     }
@@ -67,13 +77,28 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                 R.style.Theme_MaterialComponents_Dialog);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
+        progressDialog.setMessage("Autenticando...");
         progressDialog.show();
 
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
+        mAuth.signInWithEmailAndPassword(email,password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            onLoginSuccess();
+                            //Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                            //startActivity(i);
+                        } else {
+                            //Toast.makeText(LoginActivity.this, "Falha ao autenticar", Toast.LENGTH_SHORT).show();
+                            onLoginFailed();
+                        }
+                    }
+                });
+
+
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
