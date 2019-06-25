@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "685940156660",
+    "firebase_url": "https://tapaburaco-da29f.firebaseio.com",
+    "project_id": "tapaburaco-da29f",
+    "storage_bucket": "tapaburaco-da29f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685940156660:android:8e560c593e0e5892",
+        "android_client_info": {
+          "package_name": "com.tapaburaco.company.tapaburaco"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685940156660-aklme3fltp1uhrohc6mvktfml9sver9r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tapaburaco.company.tapaburaco",
+            "certificate_hash": "9cc48f3abb82dccd7d7a27459eb54d3362b346a4"
+          }
+        },
+        {
+          "client_id": "685940156660-qvu1ibqbhmm6ee90kgm0c2sicstksmvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlZagS_vjpDWbTg6HJh8giaHrnRs0L7nM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685940156660-qvu1ibqbhmm6ee90kgm0c2sicstksmvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
