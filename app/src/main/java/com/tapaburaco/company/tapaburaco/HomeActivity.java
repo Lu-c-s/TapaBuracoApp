@@ -27,11 +27,11 @@ public class HomeActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //get the compliants list
-        mComplaintList = getComplaints();
+        //mComplaintList = getComplaints();
 
-        ComplaintAdapter complaintAdapter = new ComplaintAdapter(mComplaintList, this);
+        //ComplaintAdapter complaintAdapter = new ComplaintAdapter(mComplaintList, this);
 
-        mComplaintsListView.setAdapter(complaintAdapter);
+        //mComplaintsListView.setAdapter(complaintAdapter);
     }
 
 
