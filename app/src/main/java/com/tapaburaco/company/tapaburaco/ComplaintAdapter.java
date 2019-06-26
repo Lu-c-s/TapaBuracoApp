@@ -46,7 +46,7 @@ public class ComplaintAdapter extends BaseAdapter {
 
         complaintLocation.setText(actualComplaint.getLocationString());
         complaintDescription.setText(actualComplaint.getDescription());
-        complaintImg.setImageResource(R.drawable.ic_launcher_background);
+        complaintImg.setImageBitmap(actualComplaint.getComplaintPhoto());
 
         return view;
     }
