@@ -1,5 +1,6 @@
 package com.tapaburaco.company.tapaburaco;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
@@ -40,11 +41,11 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         //get the compliants list
-        mComplaintList = getComplaints();
+        //mComplaintList = getComplaints();
 
-        ComplaintAdapter complaintAdapter = new ComplaintAdapter(mComplaintList, this);
+        //ComplaintAdapter complaintAdapter = new ComplaintAdapter(mComplaintList, this);
 
-        mComplaintsListView.setAdapter(complaintAdapter);
+        //mComplaintsListView.setAdapter(complaintAdapter);
     }
 
 
@@ -106,7 +107,8 @@ public class HomeActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_complaint) {
-            Toast.makeText(getApplicationContext(), "Chamar activity nova reclamação", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), NewComplaintActivity.class);
+            startActivity(intent);
             return true;
         }
 
