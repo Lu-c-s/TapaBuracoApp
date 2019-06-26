@@ -61,4 +61,15 @@ public class Complaint {
     public void setComplaintPhoto(Bitmap complaintPhoto) {
         this.complaintPhoto = complaintPhoto;
     }
+
+    @Override
+    public String toString() {
+        return "Complaint{" +
+                "id=" + id +
+                ", userEmail='" + userEmail + '\'' +
+                ", locationString='" + locationString + '\'' +
+                ", complaintPhoto=" + complaintPhoto +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
