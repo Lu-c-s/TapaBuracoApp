@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 public class NewComplaintActivity extends AppCompatActivity {
@@ -67,16 +69,21 @@ public class NewComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Complaint comp = new Complaint();
-                //comp.setComplaintPhoto(imagem);
+                comp.setComplaintPhoto(imagem);
                 comp.setDescription(_descricao.getText().toString());
                 comp.setLocationString(_localizacao.getText().toString());
                 comp.setUserEmail(mAuth.getCurrentUser().getEmail());
 
                 String id = mDatabase.push().getKey();
 
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                imagem.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+
                 Log.d("Sent Obj",comp.toString());
 
                 mDatabase.child(id).setValue(comp);
+                mDatabase.child(id).child("imageUrl").setValue(imageEncoded);
                 finish();
             }
         });
