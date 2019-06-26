@@ -1,5 +1,6 @@
 package com.tapaburaco.company.tapaburaco;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
@@ -106,7 +107,8 @@ public class HomeActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_complaint) {
-            Toast.makeText(getApplicationContext(), "Chamar activity nova reclamação", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), NewComplaintActivity.class);
+            startActivity(intent);
             return true;
         }
 
