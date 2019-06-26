@@ -1,5 +1,6 @@
 package com.tapaburaco.company.tapaburaco;
 
+import android.graphics.Bitmap;
 import android.location.Location;
 
 import java.io.File;
@@ -9,12 +10,12 @@ public class Complaint {
     private String userEmail;
     private Location complaintPhotoLocation;
     private String locationString;
-    private File complaintPhoto;
+    private Bitmap complaintPhoto;
     private String description;
 
     public Complaint() {}
 
-    public Complaint(long id, String userEmail, Location complaintPhotoLocation, String locationString, File complaintPhoto, String description) {
+    public Complaint(long id, String userEmail, Location complaintPhotoLocation, String locationString, Bitmap complaintPhoto, String description) {
         this.id = id;
         this.userEmail = userEmail;
         this.complaintPhotoLocation = complaintPhotoLocation;
@@ -63,11 +64,11 @@ public class Complaint {
         this.complaintPhotoLocation = complaintPhotoLocation;
     }
 
-    public File getComplaintPhoto() {
+    public Bitmap getComplaintPhoto() {
         return complaintPhoto;
     }
 
-    public void setComplaintPhoto(File complaintPhoto) {
+    public void setComplaintPhoto(Bitmap complaintPhoto) {
         this.complaintPhoto = complaintPhoto;
     }
 }
