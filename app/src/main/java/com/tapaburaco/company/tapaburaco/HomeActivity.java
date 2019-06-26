@@ -51,15 +51,11 @@ public class HomeActivity extends AppCompatActivity {
 
     //Get a list of complaints in firebase and return it
     public List<Complaint> getComplaints() {
-        Location lot = new Location("");
-        lot.setLatitude(4325252);
-        lot.setLongitude(46464566);
         Bitmap image = BitmapFactory.decodeResource(this.getResources(), R.mipmap.logo);
         Bitmap image2 = BitmapFactory.decodeResource(this.getResources(), R.drawable.download);
 
         Complaint c = new Complaint();
         c.setId(131311);
-        c.setComplaintPhotoLocation(lot);
         c.setDescription("Buraco na pista");
         c.setUserEmail("lucsa@email.com");
         c.setComplaintPhoto(image);
@@ -67,7 +63,6 @@ public class HomeActivity extends AppCompatActivity {
 
         Complaint c1 = new Complaint();
         c1.setId(1313511);
-        c1.setComplaintPhotoLocation(lot);
         c1.setDescription("Parada zuada");
         c1.setUserEmail("lucsa@email.com");
         c1.setComplaintPhoto(image2);
@@ -75,7 +70,6 @@ public class HomeActivity extends AppCompatActivity {
 
         Complaint c2 = new Complaint();
         c2.setId(131316561);
-        c2.setComplaintPhotoLocation(lot);
         c2.setDescription("Putas demais na rua");
         c2.setUserEmail("lucsa@email.com");
         c2.setComplaintPhoto(image);
