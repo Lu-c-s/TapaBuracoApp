@@ -8,17 +8,15 @@ import java.io.File;
 public class Complaint {
     private long id;
     private String userEmail;
-    private Location complaintPhotoLocation;
     private String locationString;
     private Bitmap complaintPhoto;
     private String description;
 
     public Complaint() {}
 
-    public Complaint(long id, String userEmail, Location complaintPhotoLocation, String locationString, Bitmap complaintPhoto, String description) {
+    public Complaint(long id, String userEmail, String locationString, Bitmap complaintPhoto, String description) {
         this.id = id;
         this.userEmail = userEmail;
-        this.complaintPhotoLocation = complaintPhotoLocation;
         this.locationString = locationString;
         this.complaintPhoto = complaintPhoto;
         this.description = description;
@@ -54,14 +52,6 @@ public class Complaint {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
-    }
-
-    public Location getComplaintPhotoLocation() {
-        return complaintPhotoLocation;
-    }
-
-    public void setComplaintPhotoLocation(Location complaintPhotoLocation) {
-        this.complaintPhotoLocation = complaintPhotoLocation;
     }
 
     public Bitmap getComplaintPhoto() {
