@@ -4,19 +4,39 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class NewComplaintActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+
+public class NewComplaintActivity extends AppCompatActivity {
+    private StorageReference mStorageRef;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+
+    String userId;
     ImageView imageViewFoto;
     Bitmap imagem;
+    String local = "";
+    String desc = "";
     EditText _localizacao;
     EditText _descricao;
 
@@ -24,6 +44,11 @@ public class NewComplaintActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_complaint);
+
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference("complaints");
+        mAuth = FirebaseAuth.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
 
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
@@ -40,16 +65,25 @@ public class NewComplaintActivity extends AppCompatActivity {
         _localizacao = findViewById(R.id.localizacao);
         _descricao  = findViewById(R.id.descricao);
 
-        final String local = _localizacao.getText().toString();
-        final String desc = _descricao.getText().toString();
+        local = _localizacao.getText().toString();
+        desc = _descricao.getText().toString();
 
         findViewById(R.id.enviarDados).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Complaint comp = new Complaint();
-                comp.setComplaintPhoto(imagem);
+                //comp.setComplaintPhoto(imagem);
                 comp.setDescription(desc);
                 comp.setLocationString(local);
+                comp.setUserEmail(mAuth.getCurrentUser().getEmail());
+
+                String id = mDatabase.push().getKey();
+
+               // Log.d("IIDd",mDatabase.toString());
+
+                mDatabase.child(id).setValue(comp);
+                finish();
+
             }
         });
     }
